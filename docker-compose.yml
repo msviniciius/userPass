@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  web:
+    build: .
+    command: bundle exec puma -p 3000 -e development
+    # command: bundle exec foreman start -f Procfile.docker
+    environment:
+      PORT: 3000
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    volumes:
+      - .:/bettha
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    networks:
+      - internal
+
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - internal
+
+volumes:
+  postgres:
+    external: true
+networks:
+  internal:
+    driver: "bridge"
