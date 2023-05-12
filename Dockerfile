@@ -10,9 +10,9 @@ RUN apt-get update -qq && apt-get install -y nodejs && \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && apt-get install -y yarn && \
   rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* && apt-get clean
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+WORKDIR /userpass
+COPY Gemfile /userpass/Gemfile
+COPY Gemfile.lock /userpass/Gemfile.lock
 
 RUN bundle install
 

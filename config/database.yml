@@ -9,20 +9,5 @@ development:
   variables:
     statement_timeout: 135000
 
-test:
-  <<: *default
-  url: <%= ENV['DATABASE_TEST_URL'] %>
-  pool: 5
-  variables:
-    statement_timeout: 35000
 
-staging:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
-
-production:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
 

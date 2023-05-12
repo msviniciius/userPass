@@ -14,7 +14,7 @@ services:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - .:/bettha
+      - .:/userpass
     env_file:
       - .env
     stdin_open: true
